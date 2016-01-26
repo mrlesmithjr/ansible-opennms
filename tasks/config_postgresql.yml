@@ -6,7 +6,7 @@
 - name: config_postgresql | configuring postgresql
   template:
     src: "etc/postgresql/x.x/main/pg_hba.conf.j2"
-    dest: "/etc/postgresql/{{ pgversion.stdout_lines }}/main/pg_hba.conf"
+    dest: "/etc/postgresql/{{ pgversion.stdout }}/main/pg_hba.conf"
     owner: postgres
     group: postgres
     mode: 0640
