@@ -1,6 +1,6 @@
 ---
 - name: config_postgresql | capturuing postgresql version
-  command: "pg_lsclusters -h | head -n 1 | cut -d' ' -f1"
+  command: "pg_lsclusters -h {{ '|' }} head -n 1 {{ '|' }} cut -d' ' -f1"
   register: pgversion
 
 - name: config_postgresql | configuring postgresql
