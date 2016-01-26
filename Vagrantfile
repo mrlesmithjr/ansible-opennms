@@ -13,7 +13,8 @@ Vagrant.configure(2) do |config|
     opennms.vm.network :private_network, ip: "192.168.202.201"
 
     opennms.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "2048"
+      vb.cpus = "2"
     end
   end
   config.vm.provision :shell, path: "provision.sh", keep_color: "true"
