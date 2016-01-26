@@ -1,0 +1,9 @@
+---
+- name: provisions OpenNMS
+  hosts: all
+  sudo: true
+  vars:
+  roles:
+    - role: ansible-postgresql
+    - role: ansible-opennms
+  tasks:
