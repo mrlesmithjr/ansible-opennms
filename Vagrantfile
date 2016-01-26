@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
     opennms.vm.hostname = "opennms"
 
     opennms.vm.network :private_network, ip: "192.168.202.201"
+    opennms.vm.network "forwarded_port", guest: 8980, host: 8980
 
     opennms.vm.provider "virtualbox" do |vb|
       vb.memory = "2048"
