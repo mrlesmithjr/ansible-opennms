@@ -1,7 +1,7 @@
 ---
 - name: provisions OpenNMS
   hosts: all
-  sudo: true
+  become: true
   vars:
   roles:
     - role: ansible-ntp
