@@ -1,31 +1,102 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs and configures OpenNMS http://www.opennms.org/
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Install all Ansible role requirements.
+````
+sudo ansible-galaxy install -r requirements.yml -f
+````
+
+Vagrant
+-------
+Spin up Environment under Vagrant to test.
+````
+vagrant up
+````
+
+Usage
+-----
+````
+user: admin
+pass: admin
+````
+
+###### Non-Vagrant
+Login to WebUI (http://iporhostname:8980/opennms)
+
+###### Vagrant
+Login to WebUI (http://127.0.0.1:8980/opennms)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+````
+---
+# defaults file for ansible-opennms
+opennms_debian_repo_key: 'https://debian.opennms.org/OPENNMS-GPG-KEY'
+opennms_debian_repos:
+  - 'deb http://debian.opennms.org stable main'
+  - 'deb-src http://debian.opennms.org stable main'
+````
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+#### GitHub
+````
+ansible-ntp
+ansible-postgresql
+ansible-postfix
+ansible-oracle-java8
+ansible-opennms
+````
+#### Galaxy
+````
+mrlesmithjr.ntp
+mrlesmithjr.postgresql
+mrlesmithjr.postfix
+mrlesmithjr.oracle-java8
+mrlesmithjr.opennms
+````
+Follow instructions in requirements to install dependencies.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+#### GitHub
+````
+---
+- name: provisions OpenNMS
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: ansible-ntp
+    - role: ansible-postgresql
+    - role: ansible-postfix
+    - role: ansible-oracle-java8
+    - role: ansible-opennms
+  tasks:
+````
+#### Galaxy
+````
+---
+- name: provisions OpenNMS
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: mrlesmithjr.ntp
+    - role: mrlesmithjr.postgresql
+    - role: mrlesmithjr.postfix
+    - role: mrlesmithjr.oracle-java8
+    - role: mrlesmithjr.opennms
+  tasks:
+````
 
 License
 -------
@@ -35,4 +106,7 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Larry Smith Jr.
+- @mrlesmithjr
+- http://everythingshouldbevirtual.com
+- mrlesmithjr [at] gmail.com
