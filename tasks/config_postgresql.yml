@@ -1,0 +1,14 @@
+---
+- name: config_postgresql | capturuing postgresql version
+  command: "pg_lsclusters -h | head -n 1 | cut -d' ' -f1"
+  register: pgversion
+
+- name: config_postgresql | configuring postgresql
+  template:
+    src: "etc/postgresql/x.x/main/pg_hba.conf.j2"
+    dest: "/etc/postgresql/{{ pgversion }}/main/pg_hba.conf"
+    owner: postgres
+    group: postgres
+    mode: 0640
+  notify:
+    - restart postgresql
