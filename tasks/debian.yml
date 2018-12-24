@@ -6,7 +6,7 @@
 
 - name: debian | adding opennms repos
   apt_repository:
-    repo::
+    repo:
       - name:
         - "{{ opennms_debian_repos }}"
     state: present
