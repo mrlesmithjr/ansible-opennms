@@ -7,16 +7,17 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.vm.define "opennms" do |opennms|
-    opennms.vm.box = "mrlesmithjr/trusty64"
+    opennms.vm.box = "geerlingguy/ubuntu1804"
     opennms.vm.hostname = "opennms"
-
     opennms.vm.network :private_network, ip: "192.168.202.201"
     opennms.vm.network "forwarded_port", guest: 8980, host: 8980
-
     opennms.vm.provider "virtualbox" do |vb|
       vb.memory = "2048"
       vb.cpus = "2"
     end
   end
-  config.vm.provision :shell, path: "provision.sh", keep_color: "true"
+    config.vm.provision "ansible" do |ansible|
+    ansible.verbose = "v"
+    ansible.playbook = "./playbook.yml"
+    end
 end

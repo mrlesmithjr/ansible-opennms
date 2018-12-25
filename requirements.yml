@@ -1,6 +1,6 @@
 ---
-- src: https://github.com/mrlesmithjr/ansible-ntp.git
-- src: https://github.com/mrlesmithjr/ansible-opennms.git
-- src: https://github.com/mrlesmithjr/ansible-oracle-java8.git
-- src: https://github.com/mrlesmithjr/ansible-postfix.git
-- src: https://github.com/mrlesmithjr/ansible-postgresql.git
+- src: https://github.com/blaisep/ansible-ntp.git
+- src: https://github.com/blaisep/ansible-opennms.git
+- src: https://github.com/blaisep/ansible-oracle-java8.git
+- src: https://github.com/blaisep/ansible-postfix.git
+- src: https://github.com/blaisep/ansible-postgresql.git
